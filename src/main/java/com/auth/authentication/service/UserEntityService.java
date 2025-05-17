@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @RequiredArgsConstructor
 @Service
 public class UserEntityService implements UserDetailsService {
@@ -22,6 +24,9 @@ public class UserEntityService implements UserDetailsService {
     }
 
     public void save(UserDto user) {
+        if (Objects.isNull(user.getRole()) || user.getRole().isBlank()) {
+            user.setRole("ROLE_USER");
+        }
         userDetailsRepository.save(mapper.mapToEntity(user, User.class));
     }
 }
