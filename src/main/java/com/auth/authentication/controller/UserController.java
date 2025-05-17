@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<?> users() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (authentication.isAuthenticated() ? ResponseEntity.ok("Fetched Users Successfully") : ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+        return ResponseEntity.ok("Fetched Users Successfully");
     }
 
 }
