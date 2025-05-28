@@ -26,7 +26,7 @@ public class JwtUtil {
     public String validateAndExtractUsername(String token) {
         try {
             return Jwts.parser()
-                    .verifyWith((SecretKey) key)
+                    .verifyWith(key)
                     .build()
                     .parseSignedClaims(token)
                     .getPayload()
